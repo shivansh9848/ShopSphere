@@ -1,6 +1,8 @@
+import { API_BASE_URL } from "config";
+
 export function createOrder(orders) {
   return new Promise(async (resolve) => {
-    const response = await fetch("/order", {
+    const response = await fetch(`${API_BASE_URL}order`, {
       method: "POST",
       body: JSON.stringify(orders),
       headers: { "content-type": "application/json" },
@@ -12,7 +14,7 @@ export function createOrder(orders) {
 
 export function updateOrder(order) {
   return new Promise(async (resolve) => {
-    const response = await fetch("/order/" + order.id, {
+    const response = await fetch(`${API_BASE_URL}order/` + order.id, {
       method: "PATCH",
       body: JSON.stringify(order),
       headers: { "content-type": "application/json" },
@@ -33,7 +35,7 @@ export function fetchAllOrders(sort, pagination) {
   }
 
   return new Promise(async (resolve) => {
-    const response = await fetch("/order?" + queryString);
+    const response = await fetch(`${API_BASE_URL}order?` + queryString);
     const data = await response.json();
     const totalOrders = response.headers.get("X-Total-Count");
     resolve({ data: { orders: data, totalOrders: +totalOrders } });
