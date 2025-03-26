@@ -1,17 +1,18 @@
-import { API_BASE_URL } from "config";
+import { API_BASE_URL } from "../../config.js";
 export function createUser(userdata) {
-  return new Promise(async (resolve) => {
-    const response = await fetch(`${API_BASE_URL}auth/signup`, {
-      method: "POST",
-      body: JSON.stringify(userdata),
-      headers: { "content-type": "application/json" },
+    return new Promise(async (resolve) => {
+        const response = await fetch(`${API_BASE_URL}auth/signup`, {
+            method: "POST",
+            body: JSON.stringify(userdata),
+            headers: { "content-type": "application/json" },
+        });
+        const data = await response.json();
+        resolve({ data });
     });
-    const data = await response.json();
-    resolve({ data });
-  });
 }
 
 export function loginUser(loginInfo) {
+    console.log(API_BASE_URL);
   return new Promise(async (resolve, reject) => {
     try {
       const response = await fetch(`${API_BASE_URL}auth/login`, {
