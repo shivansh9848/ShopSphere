@@ -1,22 +1,25 @@
 import { API_BASE_URL } from "../../config.js";
+
 export function createUser(userdata) {
-    return new Promise(async (resolve) => {
-        const response = await fetch(`${API_BASE_URL}auth/signup`, {
-            method: "POST",
-            body: JSON.stringify(userdata),
-            headers: { "content-type": "application/json" },
-        });
-        const data = await response.json();
-        resolve({ data });
+  return new Promise(async (resolve) => {
+    const response = await fetch(`${API_BASE_URL}auth/signup`, {
+      method: "POST",
+      credentials: "include", // added credentials
+      body: JSON.stringify(userdata),
+      headers: { "content-type": "application/json" },
     });
+    const data = await response.json();
+    resolve({ data });
+  });
 }
 
 export function loginUser(loginInfo) {
-    console.log(API_BASE_URL);
+  console.log(API_BASE_URL);
   return new Promise(async (resolve, reject) => {
     try {
       const response = await fetch(`${API_BASE_URL}auth/login`, {
         method: "POST",
+        credentials: "include", // added credentials
         body: JSON.stringify(loginInfo),
         headers: { "content-type": "application/json" },
       });
@@ -36,7 +39,9 @@ export function loginUser(loginInfo) {
 export function signOut() {
   return new Promise(async (resolve, reject) => {
     try {
-      const response = await fetch(`${API_BASE_URL}auth/logout`);
+      const response = await fetch(`${API_BASE_URL}auth/logout`, {
+        credentials: "include", // added credentials
+      });
       if (response.ok) {
         resolve({ data: "success" });
       } else {
@@ -53,7 +58,9 @@ export function signOut() {
 export function checkAuth() {
   return new Promise(async (resolve, reject) => {
     try {
-      const response = await fetch(`${API_BASE_URL}auth/check`);
+      const response = await fetch(`${API_BASE_URL}auth/check`, {
+        credentials: "include", // added credentials
+      });
       if (response.ok) {
         const data = await response.json();
         resolve({ data });
@@ -70,14 +77,12 @@ export function checkAuth() {
 export function resetPasswordRequest(email) {
   return new Promise(async (resolve, reject) => {
     try {
-      const response = await fetch(
-        `${API_BASE_URL}auth/reset-password-request`,
-        {
-          method: "POST",
-          body: JSON.stringify({ email }),
-          headers: { "content-type": "application/json" },
-        }
-      );
+      const response = await fetch(`${API_BASE_URL}auth/reset-password-request`, {
+        method: "POST",
+        credentials: "include", // added credentials
+        body: JSON.stringify({ email }),
+        headers: { "content-type": "application/json" },
+      });
       if (response.ok) {
         const data = await response.json();
         resolve({ data });
@@ -96,6 +101,7 @@ export function resetPassword(data) {
     try {
       const response = await fetch(`${API_BASE_URL}auth/reset-password`, {
         method: "POST",
+        credentials: "include", // added credentials
         body: JSON.stringify(data),
         headers: { "content-type": "application/json" },
       });

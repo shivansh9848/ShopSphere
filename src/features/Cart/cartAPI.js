@@ -4,6 +4,7 @@ export function addToCart(item) {
   return new Promise(async (resolve) => {
     const response = await fetch(`${API_BASE_URL}cart`, {
       method: "POST",
+      credentials: "include", // added credentials
       body: JSON.stringify(item),
       headers: { "content-type": "application/json" },
     });
@@ -14,7 +15,9 @@ export function addToCart(item) {
 
 export function fetchItemsByUserId() {
   return new Promise(async (resolve) => {
-    const response = await fetch(`${API_BASE_URL}cart`);
+    const response = await fetch(`${API_BASE_URL}cart`, {
+      credentials: "include", // added credentials
+    });
     const data = await response.json();
     resolve({ data });
   });
@@ -24,6 +27,7 @@ export function updateCart(update) {
   return new Promise(async (resolve) => {
     const response = await fetch(`${API_BASE_URL}cart/` + update.id, {
       method: "PATCH",
+      credentials: "include", // added credentials
       body: JSON.stringify(update),
       headers: { "content-type": "application/json" },
     });
@@ -36,6 +40,7 @@ export function deleteItemfromCart(itemId) {
   return new Promise(async (resolve) => {
     const response = await fetch(`${API_BASE_URL}cart/` + itemId, {
       method: "DELETE",
+      credentials: "include", // added credentials
       headers: { "content-type": "application/json" },
     });
     const data = await response.json();
