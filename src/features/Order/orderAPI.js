@@ -2,7 +2,7 @@ import { API_BASE_URL } from "../../config.js";
 
 export function createOrder(orders) {
   return new Promise(async (resolve) => {
-    const response = await fetch(`${API_BASE_URL}order`, {
+    const response = await fetch(`${API_BASE_URL}/order`, {
       method: "POST",
       credentials: "include", // added credentials
       body: JSON.stringify(orders),
@@ -15,7 +15,7 @@ export function createOrder(orders) {
 
 export function updateOrder(order) {
   return new Promise(async (resolve) => {
-    const response = await fetch(`${API_BASE_URL}order/` + order.id, {
+    const response = await fetch(`${API_BASE_URL}/order/` + order.id, {
       method: "PATCH",
       credentials: "include", // added credentials
       body: JSON.stringify(order),
@@ -37,7 +37,7 @@ export function fetchAllOrders(sort, pagination) {
   }
 
   return new Promise(async (resolve) => {
-    const response = await fetch(`${API_BASE_URL}order?` + queryString, {
+    const response = await fetch(`${API_BASE_URL}/order?` + queryString, {
       credentials: "include", // added credentials
     });
     const data = await response.json();

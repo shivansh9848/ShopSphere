@@ -2,7 +2,7 @@ import { API_BASE_URL } from "../../config.js";
 
 export function addToCart(item) {
   return new Promise(async (resolve) => {
-    const response = await fetch(`${API_BASE_URL}cart`, {
+    const response = await fetch(`${API_BASE_URL}/cart`, {
       method: "POST",
       credentials: "include", // added credentials
       body: JSON.stringify(item),
@@ -15,7 +15,7 @@ export function addToCart(item) {
 
 export function fetchItemsByUserId() {
   return new Promise(async (resolve) => {
-    const response = await fetch(`${API_BASE_URL}cart`, {
+    const response = await fetch(`${API_BASE_URL}/cart`, {
       credentials: "include", // added credentials
     });
     const data = await response.json();
@@ -25,7 +25,7 @@ export function fetchItemsByUserId() {
 
 export function updateCart(update) {
   return new Promise(async (resolve) => {
-    const response = await fetch(`${API_BASE_URL}cart/` + update.id, {
+    const response = await fetch(`${API_BASE_URL}/cart/` + update.id, {
       method: "PATCH",
       credentials: "include", // added credentials
       body: JSON.stringify(update),
@@ -38,7 +38,7 @@ export function updateCart(update) {
 
 export function deleteItemfromCart(itemId) {
   return new Promise(async (resolve) => {
-    const response = await fetch(`${API_BASE_URL}cart/` + itemId, {
+    const response = await fetch(`${API_BASE_URL}/cart/` + itemId, {
       method: "DELETE",
       credentials: "include", // added credentials
       headers: { "content-type": "application/json" },
