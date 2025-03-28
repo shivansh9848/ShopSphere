@@ -15,9 +15,11 @@ export function addToCart(item) {
 
 export function fetchItemsByUserId() {
   return new Promise(async (resolve) => {
-    const response = await fetch(`${API_BASE_URL}/cart`, {
-      credentials: "include", // added credentials
-    });
+    const response = await fetch(`${API_BASE_URL}/cart`
+    //     , {
+    //   credentials: "include", // added credentials
+    // }
+);
     const data = await response.json();
     resolve({ data });
   });
